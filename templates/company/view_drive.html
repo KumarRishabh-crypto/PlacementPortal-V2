@@ -1,0 +1,17 @@
+{% extends 'company/company_base.html' %}
+{% block content %}
+
+<h3>{{ drive.job_title }}</h3>
+
+<div class="card p-4 mt-3">
+    <p><strong>Status:</strong> {{ drive.status }}</p>
+    <p><strong>Description:</strong> {{ drive.job_description }}</p>
+    <p><strong>Eligibility:</strong> {{ drive.eligibility }}</p>
+    <p><strong>Deadline:</strong> {{ drive.application_deadline }}</p>
+</div>
+
+<a href="{{ url_for('company_drives') }}" class="btn btn-secondary mt-3">
+    Back
+</a>
+
+{% endblock %}

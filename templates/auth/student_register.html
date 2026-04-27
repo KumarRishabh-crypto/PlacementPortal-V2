@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card shadow-lg border-0 p-4">
+
+            <!-- Back -->
+            <a href="{{ url_for('login') }}" class="text-decoration-none mb-3">
+                ← Back to Login
+            </a>
+
+            <div class="text-center mb-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+                     width="55">
+                <h4 class="fw-bold mt-3">Student Registration</h4>
+                <p class="text-muted">
+                    Create your account to apply for placements
+                </p>
+            </div>
+
+            <form method="POST">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Full Name *</label>
+                        <input type="text" name="name"
+                               class="form-control"
+                               placeholder="John Doe" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Roll Number / Student ID *</label>
+                        <input type="text" name="roll_no"
+                               class="form-control"
+                               placeholder="2021CS001" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Email *</label>
+                        <input type="email" name="email"
+                               class="form-control"
+                               placeholder="student@institute.edu" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Phone Number *</label>
+                        <input type="text" name="phone"
+                               class="form-control"
+                               placeholder="+91 9876543210" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Department (Select or Enter Manually) *</label>
+
+                        <select name="branch_select" class="form-select mb-2">
+                            <option value="">Select from list</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>EEE</option>
+                            <option>Mechanical</option>
+                            <option>Civil</option>
+                            <option>IT</option>
+                        </select>
+
+                        <input type="text"
+                            name="branch_manual"
+                            class="form-control"
+                            placeholder="Or enter department manually (e.g., Data Science)">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="fw-semibold">Year *</label>
+                        <select name="year" class="form-select" required>
+                            <option value="">Select</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="fw-semibold">CGPA *</label>
+                        <input type="number" step="0.01" name="cgpa"
+                               class="form-control"
+                               placeholder="8.5" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Password *</label>
+                        <input type="password" name="password"
+                               class="form-control"
+                               placeholder="Enter password" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Confirm Password *</label>
+                        <input type="password" name="confirm_password"
+                               class="form-control"
+                               placeholder="Re-enter password" required>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-primary w-100 mt-4">
+                    Register
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

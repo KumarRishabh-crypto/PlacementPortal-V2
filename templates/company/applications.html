@@ -1,0 +1,45 @@
+{% extends 'company/company_base.html' %}
+
+{% block content %}
+
+<h2 class="fw-bold">Applications Overview</h2>
+<p class="text-muted">Review applications by drive</p>
+
+<div class="card p-4">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Status</th>
+                <th>Total Applications</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for drive in drives %}
+            <tr>
+                <td class="fw-semibold">{{ drive.job_title }}</td>
+                <td>
+                    {% if drive.status == 'Approved' %}
+                        <span class="badge bg-success">Active</span>
+                    {% elif drive.status == 'Pending' %}
+                        <span class="badge bg-warning">Pending</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Closed</span>
+                    {% endif %}
+                </td>
+                <td>{{ drive.applications|length }}</td>
+                <td>
+                    <a href="{{ url_for('drive_applications', drive_id=drive.id) }}"
+                       class="btn btn-primary btn-sm">
+                        View Applicants
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

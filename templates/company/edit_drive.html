@@ -1,0 +1,37 @@
+{% extends 'company/company_base.html' %}
+{% block content %}
+
+<h3>Edit Placement Drive</h3>
+
+<form method="POST" class="card p-4 mt-3">
+    <div class="mb-3">
+        <label>Job Title</label>
+        <input type="text" name="job_title" class="form-control"
+               value="{{ drive.job_title }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea name="description" class="form-control" required>
+{{ drive.job_description }}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Eligibility</label>
+        <input type="text" name="eligibility"
+               class="form-control"
+               value="{{ drive.eligibility }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Deadline</label>
+        <input type="date" name="deadline"
+               class="form-control"
+               value="{{ drive.application_deadline }}">
+    </div>
+
+    <button class="btn btn-warning">Update Drive</button>
+    <a href="{{ url_for('company_drives') }}" class="btn btn-secondary">Cancel</a>
+</form>
+
+{% endblock %}

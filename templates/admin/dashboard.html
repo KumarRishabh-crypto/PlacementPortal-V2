@@ -1,0 +1,194 @@
+{% extends 'admin/admin_base.html' %}
+{% block admin_content %}
+
+<h1 class="page-title">Dashboard Overview</h1>
+<p class="page-subtitle">Comprehensive placement portal analytics</p>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-card">
+    <div class="icon blue">👨‍🎓</div>
+    <h6>Total Students</h6>
+    <h2>{{ total_students }}</h2>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon green">🏢</div>
+    <h6>Total Companies</h6>
+    <h2>{{ total_companies }}</h2>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon purple">📁</div>
+    <h6>Placement Drives</h6>
+    <h2>{{ total_drives }}</h2>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon orange">📄</div>
+    <h6>Total Applications</h6>
+    <h2>{{ total_applications }}</h2>
+  </div>
+</div>
+
+<!-- QUICK ACTIONS -->
+<div class="card shadow-sm my-4">
+  <div class="card-body d-flex gap-3">
+    <a href="{{ url_for('admin_applications') }}" class="btn btn-primary">
+      View All Applications
+    </a>
+    <a href="{{ url_for('manage_students') }}" class="btn btn-secondary">
+      Manage Students
+    </a>
+    <a href="{{ url_for('manage_companies') }}" class="btn btn-secondary">
+      Manage Companies
+    </a>
+  </div>
+</div>
+
+
+<!-- CHARTS -->
+<!-- CHARTS -->
+<div class="row g-4 mt-3">
+
+  <div class="col-md-6">
+    <div class="chart-card">
+      <h6 class="mb-3">Company Approval Status</h6>
+      <canvas id="companyChart"></canvas>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="chart-card">
+      <h6 class="mb-3">Student Status</h6>
+      <canvas id="studentChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const companyCtx = document.getElementById('companyChart');
+new Chart(companyCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Approved', 'Pending'],
+        datasets: [{
+            data: [{{ approved_companies_count | tojson }}, {{ pending_companies_count | tojson }}],
+            backgroundColor: ['#22c55e', '#facc15']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%'
+    }
+});
+
+const studentCtx = document.getElementById('studentChart');
+new Chart(studentCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Active', 'Blacklisted'],
+        datasets: [{
+            data: [{{ active_students_count | tojson }}, {{ blacklisted_students_count | tojson }}],
+            backgroundColor: ['#2563eb', '#ef4444']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+</script>
+
+
+
+<!-- PENDING COMPANIES -->
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h5 class="fw-bold">Pending Company Approvals</h5>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Company</th>
+          <th>HR Contact</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in pending_companies %}
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{{ c.company_name }}</td>
+          <td>{{ c.hr_contact }}</td>
+          <td>{{ c.user.email }}</td>
+          <td>
+            <a href="{{ url_for('update_company_status', company_id=c.id, action='approve') }}"
+               class="btn btn-success btn-sm">Approve</a>
+
+            <a href="{{ url_for('update_company_status', company_id=c.id, action='reject') }}"
+               class="btn btn-danger btn-sm">Reject</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="5" class="text-center text-muted">
+            No pending company approvals
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PENDING DRIVES -->
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5 class="fw-bold">Pending Placement Drive Approvals</h5>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Company</th>
+          <th>Job Title</th>
+          <th>Deadline</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in pending_drives %}
+        <tr>
+          <td>{{ d.id }}</td>
+          <td>{{ d.company.company_name }}</td>
+          <td>{{ d.job_title }}</td>
+          <td>{{ d.application_deadline }}</td>
+          <td>
+            <a href="{{ url_for('update_drive_status', drive_id=d.id, action='approve') }}"
+               class="btn btn-success btn-sm">Approve</a>
+
+            <a href="{{ url_for('update_drive_status', drive_id=d.id, action='reject') }}"
+               class="btn btn-danger btn-sm">Reject</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="5" class="text-center text-muted">
+            No pending placement drives
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+
+    <div class="mb-5">
+        <div class="mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+                 width="70" alt="cap">
+        </div>
+
+        <div class="landing-title">Placement Portal</div>
+        <div class="landing-subtitle">
+            Connecting Talent with Opportunity
+        </div>
+    </div>
+
+    <div class="row justify-content-center g-4">
+
+        <!-- Admin -->
+        <div class="col-md-3">
+            <div class="glass-card text-start">
+                <div class="portal-icon icon-admin">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png"
+                         width="32">
+                </div>
+
+                <div class="portal-title">Admin Portal</div>
+                <div class="portal-sub">Institute Placement Cell</div>
+
+                <a href="{{ url_for('login') }}"
+                   class="btn btn-admin w-100 mt-4">
+                    Enter Portal
+                </a>
+            </div>
+        </div>
+
+        <!-- Company -->
+        <div class="col-md-3">
+            <div class="glass-card text-start">
+                <div class="portal-icon icon-company">
+                    <img src="https://cdn-icons-png.flaticon.com/512/906/906343.png"
+                         width="32">
+                </div>
+
+                <div class="portal-title">Company Portal</div>
+                <div class="portal-sub">Recruit Top Talent</div>
+
+                <a href="{{ url_for('login') }}"
+                   class="btn btn-company w-100 mt-4">
+                    Enter Portal
+                </a>
+            </div>
+        </div>
+
+        <!-- Student -->
+        <div class="col-md-3">
+            <div class="glass-card text-start">
+                <div class="portal-icon icon-student">
+                    <img src="https://cdn-icons-png.flaticon.com/512/476/476863.png"
+                         width="32">
+                </div>
+
+                <div class="portal-title">Student Portal</div>
+                <div class="portal-sub">Your Career Journey</div>
+
+                <a href="{{ url_for('login') }}"
+                   class="btn btn-student w-100 mt-4">
+                    Enter Portal
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-5">
+        <p class="mb-2">Don’t have an account?</p>
+        <a href="{{ url_for('company_register') }}"
+           class="btn btn-outline-light me-2">
+            Register as Company
+        </a>
+        <a href="{{ url_for('student_register') }}"
+           class="btn btn-outline-light">
+            Register as Student
+        </a>
+    </div>
+
+    <div class="landing-footer mt-5">
+        © 2025 Institute Placement Cell. All rights reserved.
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'company/company_base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h2 class="fw-bold">Placement Drives</h2>
+        <p class="text-muted">Manage your job postings</p>
+    </div>
+
+    <a href="{{ url_for('create_drive') }}" class="btn btn-primary">
+        <i class="bi bi-plus"></i> Create New Drive
+    </a>
+</div>
+
+{% for drive in drives %}
+<div class="card p-4 mb-3">
+    <div class="d-flex justify-content-between flex-wrap gap-3">
+
+        <!-- DRIVE INFO -->
+        <div>
+            <h5 class="fw-bold">
+                {{ drive.job_title }}
+
+                {% if drive.status == 'Approved' %}
+                    <span class="badge bg-success ms-2">Active</span>
+                {% elif drive.status == 'Pending' %}
+                    <span class="badge bg-warning ms-2">Pending</span>
+                {% else %}
+                    <span class="badge bg-secondary ms-2">Closed</span>
+                {% endif %}
+            </h5>
+
+            <p class="text-muted mb-1">
+                Eligibility: {{ drive.eligibility }}
+            </p>
+            <p class="text-muted mb-0">
+                Deadline: {{ drive.application_deadline }}
+                &nbsp; | &nbsp;
+                Applications: {{ drive.applications|length }}
+            </p>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+
+            <!-- 👁 VIEW -->
+            <a href="{{ url_for('view_drive', drive_id=drive.id) }}"
+               class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-eye"></i>
+            </a>
+
+            <!-- ✏️ EDIT -->
+            {% if drive.status != 'Closed' %}
+            <a href="{{ url_for('edit_drive', drive_id=drive.id) }}"
+               class="btn btn-outline-warning btn-sm">
+                <i class="bi bi-pencil"></i>
+            </a>
+            {% endif %}
+
+            <!-- 📄 APPLICATIONS -->
+            <a href="{{ url_for('drive_applications', drive_id=drive.id) }}"
+               class="btn btn-outline-info btn-sm">
+                <i class="bi bi-people"></i>
+            </a>
+
+            <!-- ❌ CLOSE -->
+            {% if drive.status != 'Closed' %}
+            <a href="{{ url_for('close_drive', drive_id=drive.id) }}"
+               class="btn btn-outline-danger btn-sm"
+               onclick="return confirm('Close this drive? Students can no longer apply.')">
+                <i class="bi bi-x-circle"></i>
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% else %}
+<p class="text-muted">No placement drives created yet.</p>
+{% endfor %}
+
+{% endblock %}

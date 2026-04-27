@@ -1,0 +1,60 @@
+{% extends 'company/company_base.html' %}
+
+{% block content %}
+
+<h2 class="fw-bold mb-3">
+    Applicants — {{ drive.job_title }}
+</h2>
+
+<div class="card p-4">
+<table class="table align-middle">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Department</th>
+            <th>CGPA</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for app in applications %}
+        <tr>
+            <td class="fw-semibold">{{ app.student.user.name }}</td>
+            <td>{{ app.student.roll_no }}</td>
+            <td>{{ app.student.branch }}</td>
+            <td>{{ app.student.cgpa }}</td>
+            <td>
+                {% if app.status == 'Selected' %}
+                    <span class="badge bg-success">Selected</span>
+                {% elif app.status == 'Shortlisted' %}
+                    <span class="badge bg-primary">Shortlisted</span>
+                {% elif app.status == 'Rejected' %}
+                    <span class="badge bg-danger">Rejected</span>
+                {% else %}
+                    <span class="badge bg-secondary">Applied</span>
+                {% endif %}
+            </td>
+            <td class="d-flex gap-1">
+                <a href="{{ url_for('update_application_status', app_id=app.id, status='Shortlisted') }}"
+                   class="btn btn-outline-primary btn-sm">Shortlist</a>
+
+                <a href="{{ url_for('update_application_status', app_id=app.id, status='Selected') }}"
+                   class="btn btn-outline-success btn-sm">Select</a>
+
+                <a href="{{ url_for('update_application_status', app_id=app.id, status='Rejected') }}"
+                   class="btn btn-outline-danger btn-sm">Reject</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<a href="{{ url_for('company_applications') }}" class="btn btn-secondary mt-3">
+    ← Back
+</a>
+
+{% endblock %}

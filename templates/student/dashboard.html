@@ -1,0 +1,108 @@
+{% extends 'student/student_base.html' %}
+{% block content %}
+
+<!-- PAGE TITLE -->
+<h2 class="fw-bold text-success">Student Dashboard</h2>
+<p class="text-muted">Track your placement journey and opportunities</p>
+
+<!-- STATS -->
+<div class="row g-4 mt-3">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="text-muted mb-1">Applied Drives</p>
+            <h2>{{ total_applied }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="text-muted mb-1">Shortlisted</p>
+            <h2>{{ shortlisted }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="text-muted mb-1">Selected</p>
+            <h2>{{ selected }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="text-muted mb-1">Rejected</p>
+            <h2>{{ rejected }}</h2>
+        </div>
+    </div>
+</div>
+
+<!-- LOWER SECTION -->
+<div class="row g-4 mt-4">
+
+    <!-- QUICK ACTIONS -->
+    <div class="col-md-4">
+        <div class="card-box">
+            <h5 class="fw-bold mb-3">Quick Actions</h5>
+
+            <a href="{{ url_for('student_drives') }}" class="btn btn-primary w-100 mb-3">
+                <i class="bi bi-briefcase"></i> Browse Drives
+            </a>
+
+            <a href="{{ url_for('student_applications') }}" class="btn btn-success w-100 mb-3">
+                <i class="bi bi-file-earmark-text"></i> My Applications
+            </a>
+
+            <a href="{{ url_for('student_profile') }}" class="btn btn-gradient w-100">
+                <i class="bi bi-person"></i> Update Profile
+            </a>
+        </div>
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <div class="col-md-4">
+        <div class="card-box">
+            <h5 class="fw-bold mb-3">Recent Activity</h5>
+
+            {% if recent_apps %}
+                {% for app in recent_apps %}
+                <div class="mb-3 p-3 rounded"
+                     style="background:#f0fdf4;">
+                    <strong>{{ app.status }}</strong> for<br>
+                    {{ app.drive.job_title }}<br>
+                    <span class="text-muted">
+                        {{ app.drive.company.company_name }}
+                    </span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted">No recent activity</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- UPCOMING DEADLINES -->
+    <div class="col-md-4">
+        <div class="card-box">
+            <h5 class="fw-bold mb-3">Upcoming Deadlines</h5>
+
+            {% if upcoming_drives %}
+                {% for drive in upcoming_drives %}
+                <div class="mb-3 p-3 rounded"
+                     style="background:#f8fafc;">
+                    <strong>{{ drive.job_title }}</strong><br>
+                    <span class="text-muted">
+                        {{ drive.company.company_name }}
+                    </span><br>
+                    <i class="bi bi-calendar"></i>
+                    {{ drive.application_deadline }}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted">No upcoming deadlines</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

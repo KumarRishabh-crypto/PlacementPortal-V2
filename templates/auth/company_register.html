@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card shadow-lg border-0 p-4">
+
+            <!-- Back -->
+            <a href="{{ url_for('login') }}" class="text-decoration-none mb-3">
+                ← Back to Login
+            </a>
+
+            <div class="text-center mb-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+                     width="55">
+                <h4 class="fw-bold mt-3">Company Registration</h4>
+                <p class="text-muted">
+                    Register your company for campus recruitment
+                </p>
+            </div>
+
+            <form method="POST">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Company Name *</label>
+                        <input type="text" name="company_name"
+                               class="form-control"
+                               placeholder="ABC Technologies" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">HR Contact Name *</label>
+                        <input type="text" name="name"
+                               class="form-control"
+                               placeholder="John Doe" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">HR Email *</label>
+                        <input type="email" name="email"
+                               class="form-control"
+                               placeholder="hr@company.com" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Phone Number *</label>
+                        <input type="text" name="hr_contact"
+                               class="form-control"
+                               placeholder="+91 9876543210" required>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="fw-semibold">Company Website</label>
+                        <input type="text" name="website"
+                               class="form-control"
+                               placeholder="https://www.company.com">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Password *</label>
+                        <input type="password" name="password"
+                               class="form-control"
+                               placeholder="Enter password" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="fw-semibold">Confirm Password *</label>
+                        <input type="password" name="confirm_password"
+                               class="form-control"
+                               placeholder="Re-enter password" required>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-primary w-100 mt-4">
+                    Submit Registration
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

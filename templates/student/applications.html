@@ -1,0 +1,40 @@
+{% extends 'student/student_base.html' %}
+{% block content %}
+
+<h3 class="fw-bold">All Applications (Historical Data)</h3>
+<p class="text-muted">Includes closed, rejected and selected applications</p>
+
+<table class="table table-hover align-middle mt-3">
+    <thead class="table-light">
+        <tr>
+            <th>Date</th>
+            <th>Student</th>
+            <th>Roll No</th>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.applied_date.strftime('%d-%m-%Y') }}</td>
+            <td>{{ app.student.user.name }}</td>
+            <td>{{ app.student.roll_no }}</td>
+            <td>{{ app.drive.company.company_name }}</td>
+            <td>{{ app.drive.job_title }}</td>
+            <td>
+                <span class="badge 
+                    {% if app.status == 'Selected' %}bg-success
+                    {% elif app.status == 'Rejected' %}bg-danger
+                    {% elif app.status == 'Shortlisted' %}bg-warning
+                    {% else %}bg-secondary{% endif %}">
+                    {{ app.status }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

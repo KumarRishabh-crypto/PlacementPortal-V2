@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Placement History</h3>
+
+{% if applications %}
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Selected On</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.drive.company.company_name }}</td>
+            <td>{{ app.drive.job_title }}</td>
+            <td>{{ app.applied_date.strftime('%d-%m-%Y') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No placements yet.</p>
+{% endif %}
+
+{% endblock %}
