@@ -1,44 +1,60 @@
-# 🎓 Placement Portal Application (V2)
+# 🚀 Smart Placement Portal System
 
-A full-stack role-based Placement Portal Application developed using Flask and SQLite to streamline campus recruitment workflows for institutes, companies, and students.
+A modern full-stack Placement Portal Application designed to simplify and automate campus recruitment workflows for institutes, recruiters, and students.
 
-The platform eliminates manual recruitment management using a centralized system where companies can create placement drives, students can apply for jobs, and administrators can monitor and manage the entire placement process efficiently.
+This system provides an interactive and user-friendly recruitment ecosystem where students can explore opportunities, companies can conduct hiring drives, and administrators can efficiently manage the entire placement process through centralized controls.
 
 ---
 
-## Screenshots
+# ✨ Highlights
 
-![Screenshot 1](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20220304.png)
+- Modern responsive UI design
+- Multi-user role-based architecture
+- Centralized placement management
+- Smart application tracking system
+- Secure approval-based workflows
+- Optimized database structure
 
-![Screenshot 2](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20220338.png)
+---
 
-# 🌟 Features
+## 📸 Application Preview
+![Screenshot 1](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20221924.png)
+### 📊 Admin Dashboard
+![Screenshot 2](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20221924.png)
+### 🏢 Company Management
+![Screenshot 3](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20222207.png)
+### 👨‍🎓 Student Dashboard
+![Screenshot 4](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20222118.png)
 
-## 👨‍💼 Admin Features
+# 👨‍💼 Admin Panel Features
+
 - Approve or reject company registrations
-- Approve or reject placement drives
-- Manage all students, companies, and placement activities
-- Blacklist or remove fraudulent users/companies
-- Search students and companies by name or ID
-- Centralized dashboard for monitoring recruitment activities
+- Manage placement drives
+- Monitor students and recruiters
+- Search users by name or ID
+- Blacklist suspicious accounts
+- Manage application activities from centralized dashboard
 
 ---
 
-## 🏢 Company Features
-- Company registration and profile creation
-- Secure login after admin approval
+# 🏢 Recruiter / Company Features
+
+- Register company profile
+- Secure login after admin verification
 - Create and manage placement drives
-- View student applications
-- Shortlist candidates and update application status
+- Track student applications
+- Shortlist or reject candidates
+- Update recruitment status dynamically
 
 ---
 
-## 👨‍🎓 Student Features
-- Student registration and login
-- Profile management
-- View approved placement drives
-- Apply for placement drives
-- Track application status and placement history
+# 👨‍🎓 Student Features
+
+- Register and manage profile
+- Browse active placement drives
+- Apply for jobs
+- Track placement application history
+- View selection/rejection status
 
 ---
 
@@ -53,36 +69,30 @@ The platform eliminates manual recruitment management using a centralized system
 - HTML
 - CSS
 - Bootstrap
-- Jinja2 Templates
+- Jinja2
 
-## Other Tools
+## Tools & Utilities
 - Git
 - GitHub
 
 ---
+# 📂 Folder Structure
 
-## 🔥 Key Functionalities
-Role-Based Access Control (RBAC)
-Placement Drive Management
-Student Application Tracking
-Company Approval Workflow
-Shortlisting & Recruitment Tracking
-Centralized Placement Monitoring
-Responsive User Interface
-
-## 🧠 Database Design
-The application includes normalized relational database models for:
-
-Students
-Companies
-Placement Drives
-Applications
-Admin Management
-
-The database is created programmatically using SQLAlchemy models without manual database creation.
-
-## 👨‍💻 Author
-cc Kumar Rishabh
-⭐ If you liked this project
-
-Give this repository a ⭐ on GitHub!
+```bash
+SmartPlacementPortal/
+│
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── templates/
+│
+├── instance/
+│
+├── app.py
+├── models.py
+├── routes.py
+├── forms.py
+├── requirements.txt
+└── README.md
