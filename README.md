@@ -8,9 +8,9 @@ The platform eliminates manual recruitment management using a centralized system
 
 ## Screenshots
 
-![Screenshot 1]()
+![Screenshot 1](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20220304.png)
 
-![Screenshot 2]()
+![Screenshot 2](https://github.com/KumarRishabh-crypto/PlacementPortal-V2/blob/main/Screenshot%202026-05-11%20220338.png)
 
 # 🌟 Features
 
